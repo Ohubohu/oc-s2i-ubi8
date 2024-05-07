@@ -12,4 +12,4 @@ RUN mkdir /etc/systemd/system/httpd.service.d/; echo -e '[Service]\nRestart=    
 ARG PORT=8080
 EXPOSE	$PORT
 
-ENTRYPOINT [ "/usr/sbin/init" ]
+ENTRYPOINT [ "/usr/sbin/httpd" ]

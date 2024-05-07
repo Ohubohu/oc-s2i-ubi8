@@ -7,7 +7,9 @@ RUN echo "Let's see what will be" > /var/www/html/index.html
 RUN echo "ServerName  my.local.host" >> /etc/httpd/conf/httpd.conf
 RUN sed -i 's/80/8080/g' /etc/httpd/conf/httpd.conf
 
+RUN mkdir /etc/systemd/system/httpd.service.d/; echo -e '[Service]\nRestart=    always' > /etc/systemd/system/httpd.service.d/httpd.conf
+
 ARG PORT=8080
-expose	$PORT
+EXPOSE	$PORT
 
 ENTRYPOINT [ "/usr/sbin/init" ]

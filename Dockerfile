@@ -9,7 +9,12 @@ RUN sed -i 's/80/8080/g' /etc/httpd/conf/httpd.conf
 
 RUN mkdir /etc/systemd/system/httpd.service.d/; echo -e '[Service]\nRestart=    always' > /etc/systemd/system/httpd.service.d/httpd.conf
 
+COPY run_httpd.sh /usr/local/bin/
+RUN chmod -x /usr/local/bin/run_httpd.sh
+
+
 ARG PORT=8080
 EXPOSE	$PORT
 
-ENTRYPOINT [ "/usr/sbin/httpd" ]
+# ENTRYPOINT [ "/usr/sbin/httpd" ]
+CMD ["run_httpd.sh"]
